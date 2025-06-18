@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "8081:8081"
+    environment:
+      POSTGRES_DB: rag_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
