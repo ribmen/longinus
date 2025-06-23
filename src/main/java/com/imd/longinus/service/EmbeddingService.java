@@ -2,8 +2,8 @@ package com.imd.longinus.service;
 
 import java.util.List;
 
-import com.imd.longinus.domain.dto.DocumentDto;
-import com.imd.longinus.repository.EmbeddingRepository;
+import com.imd.longinus.domain.model.Nr12PdfKnowledge;
+import com.imd.longinus.domain.repository.EmbeddingRepository;
 import org.springframework.ai.embedding.EmbeddingClient;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +22,14 @@ public class EmbeddingService{
         return embeddingClient.embed(text);
     }
 
-    public void save(DocumentDto documentDto){
-        List<Double> documentEmbedding = getTextEmbedding(documentDto.text());
-        embeddingRepository.save(documentDto, documentEmbedding);
+    public void save(Nr12PdfKnowledge nr12PdfKnowledge){
+        List<Double> documentEmbedding = getTextEmbedding(nr12PdfKnowledge.getContent());
+        nr12PdfKnowledge.setEmbedding(documentEmbedding);
     }
 
-    public List<DocumentDto> getByVectorSearch(String prompt){
+    public List<Nr12PdfKnowledge> getByVectorSearch(String prompt){
         List<Double> promptEmbedding = getTextEmbedding(prompt);
-        return embeddingRepository.searchDocument(prompt, promptEmbedding);
+        return embeddingRepository.searchSimilarEmbedding(promptEmbedding);
 
     }
 }

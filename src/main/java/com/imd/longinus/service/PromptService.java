@@ -1,6 +1,6 @@
 package com.imd.longinus.service;
 
-import com.imd.longinus.domain.dto.DocumentDto;
+import com.imd.longinus.domain.model.Nr12PdfKnowledge;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -20,7 +20,7 @@ public class PromptService {
     }
 
     public String prompt(String message) {
-        List<DocumentDto> relevantDocuments = embeddingService.getByVectorSearch(message);
+        List<Nr12PdfKnowledge> relevantDocuments = embeddingService.getByVectorSearch(message);
 
         String ragPrompt = ""; //todo: montar o prompt direito
 
