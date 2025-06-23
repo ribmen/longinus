@@ -32,6 +32,4 @@ public class EmbeddingService{
         return embeddingRepository.searchDocument(prompt, promptEmbedding);
 
     }
-
-
 }
