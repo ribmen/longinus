@@ -5,9 +5,6 @@ import java.util.List;
 import com.imd.longinus.domain.dto.DocumentDto;
 import com.imd.longinus.repository.EmbeddingRepository;
 import org.springframework.ai.embedding.EmbeddingClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.JdbcClient;
-import org.springframework.jdbc.core.simple.JdbcClient.StatementSpec;
 import org.springframework.stereotype.Service;
 
 
