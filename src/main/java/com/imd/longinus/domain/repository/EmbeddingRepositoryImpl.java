@@ -34,13 +34,13 @@ public class EmbeddingRepositoryImpl implements CustomEmbeddingRepository {
     @Override
     public List<Nr12PdfKnowledge> searchSimilarEmbedding(List<Double> promptEmbedding) {
         JdbcClient.StatementSpec query = jdbcClient.sql(
-            "SELECT sectionNumber, section_number, section_title, page_number 1 - (description_embedding <=> :user_promt::vector) as similarity " +
-              "FROM public.embedding_data 1 - (embedding <=> :user_promt::vector) > :match_threshold "
-              +
-              "ORDER BY embedding <=> :user_promt::vector LIMIT :match_cnt")
-          .param("user_promt", promptEmbedding.toString())
-          .param("match_threshold", MATCH_THRESHOLD)
-          .param("match_cnt", MATCH_CNT);
+                        "SELECT sectionNumber, section_number, section_title, page_number 1 - (description_embedding <=> :user_promt::vector) as similarity " +
+                                "FROM public.embedding_data 1 - (embedding <=> :user_promt::vector) > :match_threshold "
+                                +
+                                "ORDER BY embedding <=> :user_promt::vector LIMIT :match_cnt")
+                .param("user_promt", promptEmbedding.toString())
+                .param("match_threshold", MATCH_THRESHOLD)
+                .param("match_cnt", MATCH_CNT);
 
         return query.query(Nr12PdfKnowledge.class).list();
     }
