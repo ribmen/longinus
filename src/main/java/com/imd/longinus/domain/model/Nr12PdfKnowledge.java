@@ -35,4 +35,14 @@ public class Nr12PdfKnowledge {
   @Column(name = "page_number", nullable = false)
   private int pageNumber;
 
+  public String toRagContext() {
+    return String.format(
+            "Section %s: %s\nPage: %d\nContent:\n%s",
+            sectionNumber,
+            sectionTitle,
+            pageNumber,
+            content
+    );
+  }
+
 }
